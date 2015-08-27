@@ -25,3 +25,4 @@
     we cover some computer architecture.)
     
 5.  What is the approximate theoretical peak flop rate for your own machine?
+sdfa
