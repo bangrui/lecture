@@ -17,7 +17,19 @@ In practice, this took X time.  This includes
 
 Consider the following questions:
 
+To answer all the following questions, let's assume each operation takes c time, 
+including but not limited to addition and counting. Further, let's assume there are 
+N students in total sitting in k rows, with each row the same number of students, 
+which is N/k.
+
 1. What is a simple model that would predict this time?
+	The simplest prediction will be:
+	N * c / k + c * k
 2. What about a simple model to predict time for one person to count?
+	N * c
 3. How big should the class be before the parallel method takes less time?
+	For a fixed k,
+	   N * c > N * c / k + c * k
+<==>   N * c * (k-1) / k > c * k
+<==>   N > k * k / (k - 1)
 
