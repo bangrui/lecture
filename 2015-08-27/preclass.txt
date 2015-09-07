@@ -8,13 +8,30 @@
     you should use a script to produce this plot, with both the serial
     fraction and the maximum number of cores as parameters.
 
+	See plot.py and ideal_plot.pdf.
+
 2.  Suppose a particular program can be partitioned into perfectly
     independent tasks, each of which takes time tau.  Tasks are
     set up, scheduled, and communicated to p workers at a (serial)
     central server; this takes an overhead time alpha per task.
     What is the theoretically achievable throughput (tasks/time)?
 
+	Suppose there are k tasks.
+	time = k * alpha + tau
+	Then tasts/time = 1 / alpha when k goes to infinity.
+
 3.  Under what circumstances is it best to not tune?
+	This can be found from this lecture note: 
+	http://cornell-cs5220-f15.github.io/2015/08/10/performance.html
+
+	The reasons are:
+	1. Tuning takes human time. If the human time is more expensive than 
+		the computation time saved, it’s not worth it.
+	2. Performance is often in tension with maintainability, generality, 
+		and other nice software design properties. If tuning for performance 
+		means making a mess of the code base, it may not be worth it.
+	3. Most codes have bottlenecks where the majority of the time is spent. 
+		It doesn’t make sense to tune something that already takes little time.
 
 4.  The class cluster consists of eight nodes and fifteen Xeon Phi
     accelerator boards.  Based on an online search for information on
@@ -25,4 +42,4 @@
     we cover some computer architecture.)
     
 5.  What is the approximate theoretical peak flop rate for your own machine?
-sdfa
+	
