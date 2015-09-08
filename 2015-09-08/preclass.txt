@@ -22,9 +22,17 @@ something into an already-full cache.
 the memory-based AI of this code? (Hint: What is the memory-based AI of just the
 innermost loop?)
 
+Since you can not store either A or B in the cacth, everytime you go through the 
+inner loop, you need one load from A and one load from B. Also, you need to do 
+one addtion and one multiplication. Thus, the algorithmic intensity is 1.
+
 
 2. Now suppose that the cache is substantially larger than 16N, but
 substantially smaller than 8N^2. What is the AI now?
+
+Since you can reuse A, everytime you go through the inner loop, you need one 
+load from B. You need to do one addtion and one multiplication. 
+Thus, the algorithmic intensity is 2.
 
 
 3. Now suppose the cache is large enough to hold all of A, B, and C. What is the
@@ -32,11 +40,17 @@ AI now? (Hint: Writing to a byte of memory not already in the cache incurs two
 memory transfers: one to move the data to the cache for writing, and one to move
 the written data back to main memory.)
 
+Since you can reuse A and B, thus you need to load A and B for 2*N^2 load. 
+You need to do one addtion and one multiplication for N^2 times. 
+Thus, the algorithmic intensity is N.
+
 
 4. Cache overflowing. On my CPU (Intel i7-4700 HQ), L1, L2, and L3 caches are 32
 KB, 256 KB, and 6 MB respectively. What is the largest problem size N that will
 fit in each cache? What is the arithmetic intensity associated with each problem
 size?
+
+L1: Suppose
 
 
 5. My CPU has 4 cores, each of which can do 8 fused multiply-adds per cycle, has
