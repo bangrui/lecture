@@ -40,6 +40,18 @@
     you computed this, and give URLs for where you got the parameters
     in your calculation.  (We will return to this question again after
     we cover some computer architecture.)
+
+	Our class cluster has 15 XeonPhi 5110P boards. The peak for each board is:
+	Intel Xeon Phi coprocessor 5110P: 16 FLOPS/clock x 60 cores x 1.053 GHz 
+	= 1010.88 GF/s
+
+	Reference: http://www.intel.com/content/www/us/en/benchmarks/server/xeon-phi/xeon-phi-theoretical-maximums.html
+
     
 5.  What is the approximate theoretical peak flop rate for your own machine?
 	
+	My computer has 8 CPU and each of them is Intel(R) Core(TM) i7-4790 CPU @ 3.60GHz
+	and the turbo frequency is 4GHz. Each CPU also has 4 cores.
+	The theoretical peak FLOP/s is given by:
+	Number of Cores * Average Frequency * Operations Per Cycle
+	= 8 * 4 * 4GHz * 4 = 512GFlop
