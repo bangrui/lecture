@@ -50,15 +50,35 @@ KB, 256 KB, and 6 MB respectively. What is the largest problem size N that will
 fit in each cache? What is the arithmetic intensity associated with each problem
 size?
 
-L1: Suppose
+Here we will assume that we want to fit A, B and C all in the memory. So the 
+algorithmic intensity is N, based on problem 3.
 
+L1: sqrt(32KB / (8bytes * 3)) ~ 36.95
+Thus, N should be less or equal to 36
+
+L2: sqrt(256KB / (8bytes * 3)) ~ 104.5
+Thus, N should be less or equal to 104
+
+L3: sqrt(6MB / (8bytes * 3)) ~ 512
+Thus, N should be less or equal to 512.
 
 5. My CPU has 4 cores, each of which can do 8 fused multiply-adds per cycle, has
 a clock rate of 2.4 GHz, and a memory bandwidth of 25.6 GB/s. At what arithmetic
 intensity does my machine become CPU-bound?
 
+AI = 2.4GHz * 4 * 8 / 25.6 = 3
+
 
 6. So, for what size range for N will naive matmul be CPU-bound on my machine?
 
+As stated in problem 1 and problem 2, when one row or one matrix can not fit
+in the memory, the AI is 1 and 2, which is less than 3. So
+when one row or one matrix can't fit in the memory, the AI is not bounded by the
+CPU-bound. However, when the matrix is small, the theoritical AI is N, however, the
+CPU-bound is 3. Thus, when all three matrix can be fitted into the memory, naive
+matmul will be bounded by the CPU. Thus, if L1 is 32KB, then when 3 <= N <= 36, it
+will be bounded by the CPU-bound.
 
 7. So, what will a plot of Flops/sec vs N look like?
+
+Will ask the professor in oh
