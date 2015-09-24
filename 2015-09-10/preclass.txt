@@ -6,9 +6,34 @@
 2. What is the difference between two cores and one core with
    hyperthreading?
 
+   Hyperthreading is your processor pretends it has two cores when 
+   it only has one. The point of hyperthreading is that many times when you are 
+   executing code in the processor, there are parts of the processor that is idle. 
+   By including an extra set of CPU registers, the processor can act like it has 
+   two cores and thus use all parts of the processor in parallel. When the 2 cores 
+   both need to use one component of the processor, then one core ends up waiting of 
+   course. This is why it can not replace dual-core and such processors. With that
+   being said, the hyperthreading still need to share the memory between different 
+   threads. For two cores, it actually have their own independent memory.
+
+   Reference: http://superuser.com/questions/133082/hyper-threading-and-dual-core-whats-the-difference
+
 3. Do a Google search to find a picture of how memories are arranged
    on the Phi architecture.  Describe the setup briefly in your own
    words.  Is the memory access uniform or non-uniform?
+
+   Memory access to main memory (GDDR) is same for all cores. 
+   Meanwhile memory access to L2 cache is different for different cores, 
+   since first native L2 cache is checked, then L2 cache of other cores 
+   is checked via ring. 
+
+   	From the discussion on this website,
+   	http://stackoverflow.com/questions/20238801/which-architecture-to-call-non-uniform-memory-access-numa
+	we know that Phi board has a small but non-zero NUMA factor.
+
+	Pictures can be found here:
+   	Reference: https://software.intel.com/en-us/articles/memory-management-for-optimal-performance-on-intel-xeon-phi-coprocessor-alignment-and
+   	https://software.intel.com/en-us/articles/intel-xeon-phi-coprocessor-architecture-for-software-developers?language=ru
 
 4. Consider the parallel dot product implementations suggested in the
    slides.  As a function of the number of processors, the size of the
