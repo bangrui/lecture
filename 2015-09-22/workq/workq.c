@@ -153,7 +153,9 @@ void workq_put(workq_t* workq, void* data)
     task_t* task = (task_t*) malloc(sizeof(task_t));
     task->data = data;
     task->next = workq->tasks;
+	workq_lock(workq);
     workq->tasks = task;
+	workq_unlock(workq);
 }
 
 
@@ -165,12 +167,14 @@ void workq_put(workq_t* workq, void* data)
 void* workq_get(workq_t* workq)
 {
     void* result = NULL;
+	workq_lock(workq);
     if (workq->tasks) {
         task_t* task = workq->tasks;
         result = task->data;
         workq->tasks = task->next;
         free(task);
     }
+	workq_unlock(workq);
     return result;
 }
 
@@ -183,7 +187,9 @@ void* workq_get(workq_t* workq)
  */
 void workq_finish(workq_t* workq)
 {
+	workq_lock(workq);
     workq->done = 1;
+	workq_unlock(workq);
 }
 
 
@@ -222,7 +228,8 @@ void* consumer_main(void* arg)
 {
     consumer_t* consumer = (consumer_t*) arg;
     workq_t* workq = consumer->workq;
-    for (char* t = (char*) workq_get(workq);
+	char* t;
+    for (t = (char*) workq_get(workq);
          t != NULL;
          t = (char*) workq_get(workq)) {
         lprintf("Process %d: %s\n", consumer->id, t);

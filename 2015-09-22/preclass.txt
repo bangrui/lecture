@@ -1,7 +1,11 @@
 0.  How much time did you spend on this pre-class exercise, and when?
+	
+	I spent one hour after class.
 
 1.  What are one or two points that you found least clear in the
     9/22 slide decks (including the narration)?
+
+	I think this lecture note is very clear.
 
 2.  The pthread_mc.c file in the demo subdirectory runs a Monte Carlo
     simulation to estimate the expected value of a uniform random
@@ -27,3 +31,7 @@
     queue implementation.  Following the strategy outlined in the
     slides, add synchronization calls in the locations marked TODO.
     You should run the code to make sure it behaves as expected!
+
+	Basically, you need to acquire the lock before you change the
+	varaible for each worker, release the lock when you are done
+	and broadcast to all other workers who are waiting for the key.

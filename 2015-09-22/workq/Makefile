@@ -4,7 +4,7 @@ test: workq
 	./workq 4
 
 workq: workq.o 
-	$(CC) -o $@ $^ -lpthread -lm
+	$(CC) -std=c99 -o $@ $^ -lpthread -lm
 
 %.o: %.c
 	$(CC) -c -O3 $<
